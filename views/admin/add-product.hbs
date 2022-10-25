@@ -1,0 +1,86 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Add Product</h2>
+                <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+                    <label for="">Name</label>
+                    <input type="text" name="Name" class="form-control" required>
+
+                    <label for="">Brand</label>
+                    <input type="text" name="Brand" class="form-control" required>
+
+                    <label for="">Price</label>
+                    <input type="text" name="Price" class="form-control" required>
+
+                    <label for="">Description</label>
+                     <textarea type="text" name="Description" class="form-control mb-3"  rows="3" required></textarea>
+                    
+
+                    <label for="">Stock</label>
+                    <input type="text" name="Stock" class="form-control" required>
+
+                    <label for="">Image-1</label>
+                    <div class=" rowcarousel-item active py-1">
+                        <img src=""  id="viewPhoto1" class="d-block w-50 ">
+                    </div>
+                    <input type="file" name="Image" class="form-control" onchange="viewPhotoa(event)" required>
+
+                        <label for="">Image-2</label>
+                     <div class=" rowcarousel-item active py-1" >
+                        <img src=""  id="viewPhoto2" class="d-block w-50">
+                    </div>
+                     <input type="file" name="Image2" class="form-control" onchange="viewPhotob(event)" required>
+
+                      <label for="">Image-3</label>
+                     <div class=" rowcarousel-item active py-1" >
+                        <img src=""  id="viewPhoto3" class="d-block w-50">
+                    </div>
+                     <input type="file" name="Image3" class="form-control" onchange="viewPhotoc(event)" required>
+
+
+
+                    <select name="Category" class="form-select mt-3 bg-primary text-center text-white w-100"
+                        aria-label="Default select example">
+                        <option selected>Category</option>
+                        {{#each category}}
+                        <option>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+
+                    <select name="Subcategory" class="form-select mt-3 bg-primary text-center text-white w-100"
+                        aria-label="Default select example" value="{{product.Subcategory}}">
+                        <option selected>Sub Category</option>
+                        {{#each subcategory}}
+                        <option>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+
+                    <button type="submit" class="btn btn-success mt-4 w-100">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+     function viewPhotoa(event) {
+
+        document.getElementById('viewPhoto1').src = URL.createObjectURL(event.target.files[0])
+
+    }
+
+     function viewPhotob(event) {
+
+        document.getElementById('viewPhoto2').src = URL.createObjectURL(event.target.files[0])
+
+    }
+
+     function viewPhotoc(event) {
+
+        document.getElementById('viewPhoto3').src = URL.createObjectURL(event.target.files[0])
+
+    }
+</script>

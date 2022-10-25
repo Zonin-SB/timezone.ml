@@ -1,0 +1,52 @@
+<section class="vh-100" style="background-color: #6c757d;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5 text-danger">OTP</h3>
+
+                        <p style="color: black;">Enter the code we just send on your mobile phone <b
+                                class="text-danger">{{Mobile}}</b></p>
+                        <form action="/verifyOtp" method="post">
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeEmailX-2" class="form-control form-control-lg" name="otpval"
+                                    maxlength="6" placeholder="Enter OTP" />
+                                <!--  <label class="form-label" for="typeEmailX-2">Email</label> -->
+                            </div>
+
+
+
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-start mb-2">
+
+                            </div>
+
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+
+
+                            {{#if otpErr}}
+                            <div class="text-center mt-2">
+                                <span class="d-block mobile-text text-danger">OTP verification failed</span>
+                            </div>
+
+                            {{/if}}
+
+                            <hr class="my-4">
+                            <div class="text-center mt-2">
+                                <span class="d-block mobile-text">Don't receive the code?</span>
+
+                                <a class="font-weight-bold text-danger cursor" href="/resend">Resend</a>
+                                <a class="font-weight-bold text-danger cursor">/</a>
+                                <a class="font-weight-bold text-danger cursor" href="/">Back</a>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

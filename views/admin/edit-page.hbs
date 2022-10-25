@@ -1,0 +1,87 @@
+<section class="px-5 pt-5  ">
+    {{!-- <div class="container"> --}}
+        <div class="row mt-5">
+
+            <a href="/admin/add-carousel" class="btn btn-primary ">Add Carousel</a>
+
+
+
+
+
+
+        </div>
+        <div class="table-responsive mt-5" style="max-width: 70vw; margin:auto">
+            <table class="table  table-borderless align-middle " id="productTable">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Carousel</th>
+
+                        <th scope="col">Name</th>
+
+                        <th scope="col">Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each carousel}}
+                    <tr>
+                        <th scope="row">1</th>
+
+                        <td>
+                            <div style="width: 400px; height:200px">
+
+                                <img style="width:100%; height:100%; object-fit: cover"
+                                    src="/carousel-images/{{this._id}}.jpg" alt="product" />
+                            </div>
+
+                        </td>
+
+                        <td scope="row">{{this.name}}</td>
+
+
+
+
+                        <td>
+
+                            <a class="btn btn-danger" data-toggle="modal" style="color: white;"
+                                data-target="#carousel{{this._id}}">
+                                Delete
+                            </a>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="carousel{{this._id}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{this.name}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <a href="/admin/delete-carousel/{{this._id}}"
+                                                class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{!--
+    </div> --}}
+</section>

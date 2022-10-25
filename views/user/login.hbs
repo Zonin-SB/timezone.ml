@@ -1,0 +1,50 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img style="width: 450px;" src="https://egymerch.com/site_assets/assets/imgs/login/login.png"
+                    class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action="/login" method="post">
+                    <!-- Email input -->
+                    <div class="form-outline mb-2">
+                        <input type="email" name="Email" id="form1Example13" class="form-control form-control-lg"
+                            required />
+                        <label class="form-label" for="form1Example13">Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-2">
+                        <input type="password" name="Password" id="form1Example23" class="form-control form-control-lg"
+                            required />
+                        <label class="form-label" for="form1Example23">Password</label>
+                    </div>
+                    {{#if loginErr}}
+                    <p class="error" style="color: red;">Invalid username or password</p>
+                    {{/if}}
+                    {{#if blocked}}
+                    <p class="error" style="color: red;">This Account is blocked !</p>
+                    {{/if}}
+
+
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-info btn-lg btn-block">Login</button>
+                    <br>
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/signup"
+                            style="color: red;"><b>Signup</b></a></p>
+
+
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

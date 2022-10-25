@@ -1,0 +1,108 @@
+{{#if wishcount}}
+<div class="container mt-5">
+    <div class="row">
+         <div class=" table-responsive mt-3 ">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Add to Cart</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    {{#each wishlist}}
+                    <tr>
+                        <td></td>
+                        <td class="align-middle">
+                           <a href="/product-details/{{this.product._id}}"> <img style="width: 60px;height:60px"
+                                src="/product-images/{{this.product._id}}.jpg" alt="" style="width: 50px;"> </a>
+                                </td>
+                        <td class="align-middle">{{this.product.Name}}</td>
+                        <td class="align-middle">Rs {{this.product.Price}}</td>
+                        
+                        <td class="align-middle "> <a onclick="addToCart('{{product._id}}')" class="btn px-3 ml-3" style="color: white;background-color:#007bff"><i
+                            class="fa fa-shopping-cart mr-1"></i> Add To
+                        Cart</a></td>
+                        <td class="align-middle ">
+                            
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-end ">
+                               
+                                <a data-bs-toggle="modal" data-bs-target="#a{{this.product._id}}Model"
+                                    class="btn btn-sm btn-danger " style="color: white;"><i class="fas fa-times"></i></a>
+
+                                <div class="modal fade" id="a{{this.product._id}}Model" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-danger" id="exampleModalLabel">Are you sure
+                                                    you want to remove {{this.product.Name}} ?</h5>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <a href="/remove-wish-product/?wishId={{this._id}}&proId={{this.product._id}}"
+                                                    type="button" class="btn btn-danger">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 
+
+{{else}}
+
+<div class="container mt-5 ">
+    <div class="row p-0">
+
+        <div class="col-md-12 p-0">
+
+            <div class="card">
+
+                <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center">
+                        <div class="empty_image_wrap" style="width: 130px; height: 130px; margin: auto;">
+
+                            <img src="/img/emptywishlist.png" width="100" height="100" class="img-fluid mb-4 mr-3">
+                        </div>
+                        <h3><strong>Your Wishlist is Empty</strong></h3>
+                        <h4>Add something to your wishlist now </h4>
+                        <a href="/view-allProducts" class="btn btn-sm m-3" style="background-color: #17a2b8;color:white" data-abc="true">continue
+                            shopping</a>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+{{/if}}
+
+
+
+
+
+
+
+

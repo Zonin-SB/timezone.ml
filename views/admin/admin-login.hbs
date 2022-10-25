@@ -1,0 +1,47 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img style="width: 450px;"
+                    src="https://icon-library.com/images/admin-login-icon/admin-login-icon-26.jpg" class="img-fluid"
+                    alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action="/admin/login" method="post">
+                    <!-- Email input -->
+                    <div class="form-outline mb-2">
+                        <input type="text" name="username" id="form1Example13" class="form-control form-control-lg"
+                            required />
+                        <label class="form-label" for="form1Example13">Username</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-2">
+                        <input type="password" name="password" id="form1Example23" class="form-control form-control-lg"
+                            required />
+                        <label class="form-label" for="form1Example23">Password</label>
+                    </div>
+                    {{#if loginError}}
+                    <p class="error" style="color: red;">Invalid username or password</p>
+                    {{/if}}
+
+
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-info btn-lg btn-block">Login</button>
+                    <br>
+
+
+
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

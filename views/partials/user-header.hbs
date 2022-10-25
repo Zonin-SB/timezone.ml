@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-info pt-3" style="min-width: 100vw;">
+  <a class="navbar-brand" href="/">
+    <h3 style="color:black;"><b style="color:red">T</b>ime<b style="color: red;">Z</b>one</h3>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/view-allProducts">
+          <h5 style="color: white;">Shop</h5> <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cart">
+          <h5 style="color: white;">Cart 
+            {{#if userLogin}}
+            <span class="badge badge-danger " id="cart-count">{{cartCount}}</span>
+            {{/if}}
+            </h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/wishlist">
+          <h5 style="color: white;">Wishlist
+             {{#if userLogin}}
+            <span class="badge badge-danger " id="wish-count">{{wishcount}}</span>
+            {{/if}}
+          </h5>
+        </a>
+      </li>
+      {{#if userLogin}}
+      <li class="nav-item">
+        <a class="nav-link" href="/orders">
+          <h5 style="color: white;">Orders</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">
+          <h5 style="color: white;">Profile</h5>
+        </a>
+      </li>
+      {{/if}}
+
+
+    </ul>
+    <div class="dropdown">
+      {{!-- <a class="btn btn-secondary dropdown-toggle ml-5" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{#if userLogin}}
+        {{user.Name}}
+        {{else}}
+        My Account
+        {{/if}}
+      </a> --}}
+
+      {{!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> --}}
+        {{#if userLogin}}
+        <a class="btn btn-warning" href="/logout">Logout</a>
+        {{else}}
+        <a class="btn btn-warning" href="/login">Login</a>
+        {{/if}}
+
+
+      {{!-- </div> --}}
+    </div>
+
+
+  </div>
+</nav>

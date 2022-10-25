@@ -1,0 +1,170 @@
+<!-- Shop Detail Start -->
+<div class="container-fluid pb-5">
+    <div class="row px-xl-5 mt-5">
+      
+        <div class="col-lg-5 mb-30 ">
+            <div id="product-carousel" class="carousel slide px-5" data-ride="carousel">
+                  <div class="zoom-image" >
+                        <div class="carousel-item active ml-5 px-5">
+                            <img class="img-fluid" style="width: 200px;" src="/product-images/{{productDetails._id}}.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item ml-5 px-5">
+                            <img class="img-fluid" style="width: 200px;" src="/product-images2/{{productDetails._id}}.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item ml-5 px-5">
+                            <img class="img-fluid" style="width: 200px;" src="/product-images3/{{productDetails._id}}.jpg"  alt="Image">
+                        </div>
+                       
+                    </div> 
+                
+                  <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                    </a> 
+            </div>
+        </div>
+
+        <div class="col-lg-7 h-auto mb-30 mt-2">
+            <div class="h-100 bg-light p-30 px-3 pt-2">
+                <h3>{{productDetails.Name}}</h3>
+                <div class="d-flex mb-3">
+                     <div class="text-primary mr-2">
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star-half-alt"></small>
+                        <small class="far fa-star"></small>
+                    </div>
+                    <small class="pt-1">(99 Reviews)</small> 
+                </div>
+                <h3 class="font-weight-semi-bold mb-4">Rs {{productDetails.Price}}</h3>
+                <p class="mb-4">{{productDetails.Description}}</p>
+               
+                <div class="d-flex align-items-center mb-4 pt-2">
+                 
+                    <a onclick="addToWishlist('{{productDetails._id}}')" class="btn btn-primary px-3" style="color: white;"><i class="fa-sharp fa-solid fa-circle-heart mr-1"></i> Add To
+                        Wishlist</a>
+                    <a onclick="addToCart('{{productDetails._id}}')" class="btn btn-primary px-3 ml-3" style="color: white;"><i
+                            class="fa fa-shopping-cart mr-1"></i> Add To
+                        Cart</a>
+                </div>
+               
+            </div>
+        </div>
+
+
+
+</div>
+   
+</div>
+<!-- Shop Detail End -->
+
+
+
+
+
+<script>
+    // Zoom images
+
+    // Add zoom-image class to the container of the image that you want to apply the zoom to.
+
+    jQuery(document).ready(function ($) {
+
+        $('.zoom-image img').click(function (event) {
+            var ix = $(this).offset().left;
+            var iy = $(this).offset().top;
+            console.log(ix + '-' + iy);
+
+            var mx = event.pageX;
+            var my = event.pageY;
+            console.log(mx + '-' + my);
+        })
+
+        $('.zoom-image img').hover(function () {
+
+            var img = $(this).attr('src');
+
+            $(this).after("<div class='hover-image' style='background-image: url(" + img + "); background-size: 500px;'></div>");
+
+            $(this).mousemove(function (event) {
+
+                // Mouse Position
+                var mx = event.pageX;
+                var my = event.pageY;
+
+                // Image Position
+                var ix = $(this).offset().left;
+                var iy = $(this).offset().top;
+
+                // Mouse Position Relavtive to Image
+                var x = mx - (ix);
+                var y = my - (iy);
+
+                // Image Height and Width
+                var w = $(this).width();
+                var h = $(this).height();
+
+                // Mouse Position Relative to Image, in %
+                var xp = (-x / w) * -100;
+                var yp = (-y / h) * -100;
+
+                $(this).parent().find('.hover-image').attr('style',
+
+                    "background-image: url(" + img + "); background-size: 500px; background-repeat: no-repeat; background-position: " + xp + "% " + yp + "%; top: " + y + "px; left: " + x + "px;");
+
+            });
+
+        }, function () {
+
+            $(this).parent().find('.hover-image').remove();
+
+        });
+
+    });
+
+</script>
+
+<style>
+    .zoom-image-container {
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+
+    .zoom-image {
+
+        position: relative;
+       
+         
+    }
+
+    .zoom-image img {
+
+        cursor: zoom-in;
+
+
+       
+
+    }
+
+    .hover-image {
+
+        position: fixed;
+        width: 250px;
+        height: 250px;
+
+        border-radius: 50%;
+
+        transform: translate(-0%, -20%);
+
+        pointer-events: none;
+
+        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+
+    }
+</style>  

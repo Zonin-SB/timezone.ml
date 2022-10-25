@@ -1,0 +1,272 @@
+<!-- Checkout Start -->
+<div class="container-fluid">
+    <form id="checkout-form">
+        <div class="row px-xl-5 mt-5">
+
+            <div class="col-lg-8">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing
+                        Address</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    {{#if address}}
+                    <div class="row">
+
+                        <div class="col-md-6 form-group">
+
+
+                            <input class="form-control" type="text" name="Name" placeholder="Full Name"
+                                value="{{address.Name}}" required>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+
+                        </div>
+                        <div class="col-md-6 form-group">
+
+                            <input class="form-control" type="text" name="Mobile" placeholder="Phone Number"
+                                value="{{address.Mobile}}" required>
+
+                            <br>
+                            <input class="form-control" type="email" name="Email" placeholder="E-mail"
+                                value="{{address.Email}}" required>
+                            <br>
+                            <input class="form-control" type="text" name="Address" placeholder="Enter Your Address"
+                                value="{{address.Address}}" required>
+
+                            {{!-- hidden feald to pass user id --}}
+
+                        </div>
+                        <div class="col-md-6 form-group">
+
+                        </div>
+
+                        <div class="col-md-6 form-group">
+
+                            <input class="form-control" type="text" name="Pincode" placeholder="Pincode"
+                                value="{{address.Pincode}}" required>
+                        </div>
+
+                    </div>
+
+                    <a href="/profile" class="btn btn-primary">Change Address</a>
+                    {{else}}
+                    <a href="/profile" class="btn btn-primary">Add Address</a>
+                    {{/if}}
+                </div>
+               
+            </div>
+
+
+
+
+            <div class="col-lg-4">
+                <input type="text" name="userId" value="{{user._id}}" hidden>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order
+                        Total</span></h5>
+                <div class="mb-30">
+                    <div class="input-group">
+                        <input type="text" name="code" id="code" class="form-control border-0 p-4"
+                            placeholder="Coupon Code">
+
+                        <div class="input-group-append">
+                            <button onclick="checkOut()" type="button" class="btn btn-primary">Apply Coupon</button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label style="color: red;display:none" id="notfound">Invalid Coupon</label>
+                    </div>
+                </div>
+                <br>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom">
+
+                    </div>
+                    <div class="border-bottom pt-3 pb-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Subtotal</h6>
+                            <h6><span>Rs {{totalPrice}}</span></h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Shipping</h6>
+                            <h6 class="font-weight-medium">free</h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+
+                            <h5>Total
+
+                            </h5>
+
+                            <h5>Rs<span id="total"> {{totalPrice}}</span> </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span
+                            class="bg-secondary pr-3">Payment</span></h5>
+                    <div class="bg-light p-30">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="paymentMethod" id="paypal"
+                                    value="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="paymentMethod" id="razorpay"
+                                    value="razorpay">
+                                <label class="custom-control-label" for="razorpay">Razorpay</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="paymentMethod" id="banktransfer"
+                                    value="cod">
+                                <label class="custom-control-label" for="banktransfer">COD</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Checkout End -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+    $("#checkout-form").submit((e) => {
+        console.log('ajax working')
+        e.preventDefault()
+
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                alert(response)
+                if (response.codSuccess) {
+                    console.log("COD working")
+                    location.href = '/orderSuccess'
+                } else if (response.razorpay) {
+                    console.log('razorpay working')
+                    razorpayPayment(response.order)
+                } else {
+                    console.log('paypal working')
+                    paypalPayment(response.totalPrice, response.orderId)
+                }
+            }
+        })
+    })
+
+
+    function paypalPayment(totalPrice, orderId) {
+        console.log('paypal started')
+
+        $.ajax({
+            url: '/paypal-payment',
+            data: {
+                totalPrice,
+                orderId,
+            },
+            method: 'post',
+            success: (response) => {
+                console.log(response)
+                location.href = response.forwardLink
+
+                if (response.status) {
+                    location.href = '/orderSuccess'
+                } else {
+
+                    alert('Payment failed')
+                }
+            }
+        })
+    }
+
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_hjUdWI21GXdKXk", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "TimeZone",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+                RazorverifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "TimeZone",
+                "email": "timezone@gmail.com",
+                "contact": "+91 8075159508"
+            },
+            "notes": {
+                "address": "Timezone pvt ltd Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function RazorverifyPayment(payment, order) {
+        $.ajax({
+            url: "/razor-verify-payment",
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                console.log('razor response')
+                console.log(response)
+                if (response.status) {
+
+                    location.href = '/orderSuccess'
+                } else {
+                    location.reload()
+                    alert("Payment failed")
+                }
+            }
+        })
+    }
+
+
+    function checkOut() {
+
+        let total = document.querySelector('#total')
+        console.log('coupon ajax total')
+        console.log(total)
+        let code = document.getElementById('code').value
+        $.ajax({
+            url: '/check-coupon',
+            data: {
+                code
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.value) {
+                    console.log('response value')
+                    console.log(response.value)
+
+                    let discount = parseInt(total.innerHTML) - response.value
+                    console.log(discount)
+                    total.innerHTML = discount
+                } else {
+
+                    document.getElementById('notfound').style.display = 'initial'
+                }
+            }
+        })
+    }
+
+</script>

@@ -1,0 +1,144 @@
+
+<!-- Shop Start -->
+<div class="container-fluid">
+    <div class="row mt-5">
+        <!-- Shop Sidebar Start -->
+
+
+        {{!-- <div class="col-lg-3 col-md-12"> --}}
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <form class="d-flex justify-content-center" id="search" action="/search" method="post">
+                    <input class="form-control me-2" id="searchProduct" type="search" name="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-info" type="submit">Search</button>
+                </form>
+            </div>
+
+            {{!--
+        </div> --}}
+
+
+
+
+
+
+
+
+        <!-- Shop Sidebar End -->
+
+
+        <!-- Shop Product Start -->
+        <div class="col-md-12">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                {{#each products}}
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1 ">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            <div class="mx-5 my-5 text-center">
+                                <img class="img-fluid" style="width: 200px;height: 280px;"
+                                    src="/product-images/{{this._id}}.jpg" alt="">
+                            </div>
+                            <div class="product-action">
+                                <!--  <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a> -->
+                                <a onclick="addToCart('{{this._id}}')" class="btn btn-outline-dark btn-square"><i
+                                        class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square"><i id="{{this._id}}"
+                                        onclick="addToWishlist('{{this._id}}')" class="far fa-heart"></i></a>
+
+                                <a class="btn btn-outline-dark btn-square" href="/product-details/{{this._id}}"><i
+                                        class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        {{!-- <p>{{this.Brand}}</p> --}}
+                        <div class="text-center py-4 ">
+
+                            <div class="container-fluid text-truncate ">
+                                <a class="h6 text-decoration-none text-truncate "
+                                    href="/product-details/{{this._id}}">{{this.Name}}</a>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>Rs {{this.Price}}</h5>
+                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>(99)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+
+
+
+
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+</div>
+<!-- Shop End -->
+
+{{#if notFound}}
+<div class="container mt-3 ">
+    <div class="row p-0">
+
+        <div class="col-md-12 p-0">
+
+            <div class="card">
+
+                <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center">
+                        <div class="empty_image_wrap" style="width: 130px; height: 130px; margin: auto;">
+
+                            <img src="/img/notFound1.png" width="300" height="300" class="img-fluid mb-4 mr-3">
+                        </div>
+                        <h3><strong>No Product Found...</strong></h3>
+
+                        <a href="/view-allProducts" class="btn btn-sm m-3" style="background-color: #17a2b8;color:white"
+                            data-abc="true">continue
+                            shopping</a>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+{{/if}}
+
+
+
+
+<script>
+    $("#search").submit(e => {
+        if ($("#searchProduct").val()) {
+            $("#search").submit()
+        }
+        else {
+            e.preventDefault();
+        }
+
+    })
+</script>

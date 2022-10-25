@@ -1,0 +1,189 @@
+
+
+<section class="px-5">
+
+    
+ <div class="row mt-5">
+        
+  
+       
+        <a href="/admin/add-product" class="btn btn-primary ml-5 mt-3">Add Product</a>
+
+        {{!-- <div class="dropdown mt-3">
+            <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+           
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/admin/view-category">Main Category</a>
+                <a class="dropdown-item" href="/admin/view-subcategory">Sub Category</a>
+
+            </div>
+             </button>
+        </div> --}}
+
+          <div class="dropdown mt-3">
+                        <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Category
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/admin/view-category">Main Category</a>
+                            <a class="dropdown-item" href="/admin/view-subcategory">Sub Category</a>
+            
+                        </div>
+                    </div>
+
+        <a href="offer-management" class="btn btn-primary ml-2 mt-3">Offers</a>
+        <a href="coupon-management" class="btn btn-primary ml-2 mt-3">Coupons</a>
+
+
+        
+    </div> 
+
+    
+
+
+    <div class="table table-responsive mt-5">
+
+        <table class="data-table table hover multiple-select-row nowrap" id="myTable">
+            <div class="col-lg-4 col-md-4 col-sm-6 my-2">
+             <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()"
+                placeholder="Search for names..">
+                </div>
+              
+
+            <thead >
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sub Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Edit/Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td scope="row">1</td>
+                    <td scope="row">{{this.Name}}</td>
+                    <td scope="row">{{this.Category}}</td>
+                    <td scope="row">{{this.Subcategory}}</td>
+                    <td scope="row">{{this.Price}}</td>
+                    <td scope="row">{{this.Stock}}</td>
+                    <td scope="row"><img style="width: 50px; height:50px" src="/product-images/{{this._id}}.jpg" alt="">
+                    </td>
+                    <td>
+
+
+                        <!-- Button trigger modal -->
+
+                        <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModalEdit{{this._id}}">
+                            Edit
+                        </a>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalEdit{{this._id}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to edit {{this.Name}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- Button trigger modal -->
+                        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" data-toggle="modal"
+                            data-target="#exampleModalDelete{{this._id}}">
+                            Delete
+                        </a>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalDelete{{this._id}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete {{this.Name}}
+                                    </div>
+                                    <div class="modal-footer-1">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                {{/each}}
+            </tbody>
+        </table>
+        
+    </div>
+
+
+
+</section>
+
+ <script>
+                function myFunction() {
+                    // Declare variables
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+
+
+                
+            </script> 
+
+
+
+

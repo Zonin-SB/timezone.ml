@@ -1,0 +1,77 @@
+<section>
+    <div class="table-responsive px-5">
+        <div class="row mt-5">
+
+          
+            <div class="dropdown mt-3">
+                <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Download
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     <li><a class="dropdown-item" href="/admin/exportExcel">Excel</a></li>
+                   <li> <button onclick="myfun('pt')" class="dropdown-item">Pdf</button>
+                   
+
+                </ul>
+            </div>
+
+
+
+        </div>
+        <div class="table-wrap" id="pt">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                     
+                    <th scope="col">Date</th>
+                    <th scope="col">OrderID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Products</th>
+                    
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each totalSalesReport}}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{this.date}}</td>
+                    <td>{{this._id}}</td>
+                     <td>{{this.deliveryDetails.name}}</td>
+                    
+                    
+                    <td>
+                    {{#each this.product}}
+                    {{this.Name}}<br> 
+                   {{/each}}
+                   </td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.status}}</td>
+                    <td>{{this.totalPrice}}</td>
+                   
+
+
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    console.log("Pdf script working")
+ function myfun(pt){
+    var bk = document.body.innerHTML;
+    var dv = document.getElementById('pt').innerHTML;
+        document.body.innerHTML = dv;
+        document.body.style.padding="20px"
+        window.print();
+        location.reload();
+
+    }
+</script>
