@@ -199,7 +199,7 @@ router.get('/product-details/:id', async (req, res) => {
     res.render('user/expand-product', { user: req.session.user, productDetails, cartCount: req.session.cartCount, wishcount: req.session.wishcount, userLogin: req.session.userLogin })
   }).catch((err) => {
     console.log('Product details err' + err);
-    res.render('./error', { message: err.message })
+    res.render('404', { message: err.message })
   })
 
 })
@@ -492,6 +492,8 @@ router.get('/view-ordered-products/:id', verifyLogin, async (req, res) => {
 
     res.render('user/view-ordered-products', { user: req.session.user, userLogin: req.session.userLogin, cartCount: req.session.cartCount, orderDetails, totalPrice, deliveryDetails, currentStatus, paymentMethod, currentDate, paymentStatus, wishcount: req.session.wishcount })
 
+  }).catch((err)=>{
+    res.render('404')
   })
 
 })

@@ -148,7 +148,7 @@
             method: 'post',
             data: $('#checkout-form').serialize(),
             success: (response) => {
-                alert(response)
+               
                 if (response.codSuccess) {
                     console.log("COD working")
                     location.href = '/orderSuccess'

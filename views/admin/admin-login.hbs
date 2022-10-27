@@ -7,19 +7,33 @@
                     alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form action="/admin/login" method="post">
+                <form id="loginform" action="/admin/login" method="post">
                     <!-- Email input -->
                     <div class="form-outline mb-2">
-                        <input type="text" name="username" id="form1Example13" class="form-control form-control-lg"
-                            required />
-                        <label class="form-label" for="form1Example13">Username</label>
+                        <input type="text" name="username" id="name" class="form-control form-control-lg"
+                            placeholder="Username" />
+                        {{!-- form validation fald --}}
+
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+
+                        {{!-- form validation ends --}}
+
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-2">
-                        <input type="password" name="password" id="form1Example23" class="form-control form-control-lg"
-                            required />
-                        <label class="form-label" for="form1Example23">Password</label>
+                        <input type="password" name="password" id="password" class="form-control form-control-lg"
+                            placeholder="Password" />
+                        {{!-- form validation fald --}}
+
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+
+                        {{!-- form validation ends --}}
+
                     </div>
                     {{#if loginError}}
                     <p class="error" style="color: red;">Invalid username or password</p>
@@ -45,3 +59,149 @@
         </div>
     </div>
 </section>
+
+
+<style>
+    .form-outline {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .form-outline.success input {
+        border-color: #2ecc71;
+    }
+
+    .form-outline.error input {
+        border-color: #e74c3c;
+    }
+
+
+    .form-outline.success textarea {
+        border-color: #2ecc71;
+    }
+
+    .form-outline.error textarea {
+        border-color: #e74c3c;
+    }
+
+
+
+
+    .form-outline i {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        visibility: hidden;
+    }
+
+    .form-outline.success i.fa-check-circle {
+        color: #2ecc71;
+        visibility: visible;
+    }
+
+
+    .form-outline.error i.fa-exclamation-circle {
+        color: #e74c3c;
+        visibility: visible;
+    }
+
+
+
+    .form-outline small {
+        visibility: hidden;
+        position: absolute;
+        left: 10px;
+    }
+
+    .form-outline.error small {
+        color: #e74c3c;
+        visibility: visible;
+    }
+</style>
+
+
+
+<script>
+    const form = document.getElementById("loginform")
+    const name = document.getElementById("name")
+    const password = document.getElementById("password")
+
+
+    form.addEventListener("submit", (e) => {
+
+        //checking input fealds
+        checkInput()
+
+
+        //chek if all the element valid or not
+        let isSuccess = form.querySelectorAll(".form-outline.success")
+        let formoutline = form.querySelectorAll(".form-outline")
+
+        if (isSuccess) {
+            //checking if all the elements have success class
+            if (formoutline.length == isSuccess.length) {
+
+            } else {
+                e.preventDefault();
+            }
+
+        }
+
+
+
+
+    })
+
+
+
+    function checkInput() {
+        //get values form input feald
+        const nameValue = name.value.trim()
+
+        const passwordValue = password.value.trim()
+
+
+
+        // validation email
+
+        if (nameValue === '') {
+            setErrorFor(name, 'Username connot be empty');
+        } else {
+            setSuccessFor(name)
+        }
+
+        //validating password
+
+        if (passwordValue === '') {
+            setErrorFor(password, 'Password cannot be empty');
+        }
+        else {
+            setSuccessFor(password);
+        }
+
+
+
+    }
+
+
+
+
+
+    //setting error
+    function setErrorFor(input, message) {
+        const formoutline = input.parentElement;
+        const small = formoutline.querySelector('small');
+        small.innerText = message;
+        formoutline.className = 'form-outline error'
+    }
+
+
+    //setting succress
+    function setSuccessFor(input) {
+        const formoutline = input.parentElement;
+        formoutline.className = 'form-outline success'
+    }
+
+
+
+</script>

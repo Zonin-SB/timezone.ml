@@ -44,6 +44,7 @@ module.exports = {
                     Name: proDetails.Name,
                     Brand:proDetails.Brand,
                     Price: proDetails.Price,
+                    oldPrice:proDetails.oldPrice,
                     Description: proDetails.Description,
                     Stock: proDetails.Stock,
                     Category: proDetails.Category,

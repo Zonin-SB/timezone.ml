@@ -318,7 +318,7 @@ router.get('/sales-report', adminVerify, async (req, res) => {
 
     res.render('admin/sales-report', { admin: true, totalSalesReport })
   }).catch(() => {
-    res.render('./error')
+    res.render('404')
   })
 
 })
