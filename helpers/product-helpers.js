@@ -42,9 +42,9 @@ module.exports = {
             db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objectId(proId) }, {
                 $set: {
                     Name: proDetails.Name,
-                    Brand:proDetails.Brand,
+                    Brand: proDetails.Brand,
                     Price: proDetails.Price,
-                    oldPrice:proDetails.oldPrice,
+                    oldPrice: proDetails.oldPrice,
                     Description: proDetails.Description,
                     Stock: proDetails.Stock,
                     Category: proDetails.Category,
@@ -101,61 +101,61 @@ module.exports = {
         })
     },
 
-     //for getting trending product
-     getTrendingProduct:()=>{
+    //for getting trending product
+    getTrendingProduct: () => {
         currentYear = new Date().getFullYear();
-        return new Promise(async(resolve,reject)=>{
-            const ProductReport=await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
-                $match:{
-                    currentDate:{
+        return new Promise(async (resolve, reject) => {
+            const ProductReport = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                $match: {
+                    currentDate: {
                         $gte: new Date(`${currentYear}-01-01`),
                         $lt: new Date(`${currentYear + 1}-01-01`)
                     }
                 }
             },
             {
-                $unwind:'$products'
+                $unwind: '$products'
             },
             {
-                $project:{
-                    item:"$products.item",
-                    quantity:"$products.quantity"
+                $project: {
+                    item: "$products.item",
+                    quantity: "$products.quantity"
                 }
             },
             {
-                $group:{
-                    _id:"$item",
-                    totalSaledProduct:{$sum:"$quantity"}
+                $group: {
+                    _id: "$item",
+                    totalSaledProduct: { $sum: "$quantity" }
                 }
             },
             {
-                $lookup:{
-                    from:collection.PRODUCT_COLLECTION,
-                    localField:"_id",
-                    foreignField:"_id",
-                    as:"product"
+                $lookup: {
+                    from: collection.PRODUCT_COLLECTION,
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "product"
                 }
             },
             {
-                $unwind:"$product"
+                $unwind: "$product"
             }
-        ]).sort({totalSaledProduct:-1}).limit(4).toArray()
-        console.log(ProductReport);
-        resolve(ProductReport)
+            ]).sort({ totalSaledProduct: -1 }).limit(4).toArray()
+            console.log(ProductReport);
+            resolve(ProductReport)
         })
     },
 
 
 
-    getCategoryProduct:(category)=>{
-        return new Promise(async(resolve,reject)=>{
-        await db.get().collection(collection.PRODUCT_COLLECTION).find({Category:category}).toArray().then((product)=>{
-            console.log(product);
-            resolve(product)
-            }).catch(()=>{
+    getCategoryProduct: (category) => {
+        return new Promise(async (resolve, reject) => {
+            await db.get().collection(collection.PRODUCT_COLLECTION).find({ Category: category }).toArray().then((product) => {
+                console.log(product);
+                resolve(product)
+            }).catch(() => {
                 reject()
             })
-            
+
         })
     }
 }

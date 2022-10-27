@@ -1,59 +1,57 @@
-
-
 <section class="px-5">
 
-    
- <div class="row mt-5">
-        
-  
-       
+
+    <div class="row mt-5">
+
+
+
         <a href="/admin/add-product" class="btn btn-primary ml-5 mt-3">Add Product</a>
 
         {{!-- <div class="dropdown mt-3">
             <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Category
-           
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/admin/view-category">Main Category</a>
+                    <a class="dropdown-item" href="/admin/view-subcategory">Sub Category</a>
+
+                </div>
+            </button>
+        </div> --}}
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+            </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="/admin/view-category">Main Category</a>
                 <a class="dropdown-item" href="/admin/view-subcategory">Sub Category</a>
 
             </div>
-             </button>
-        </div> --}}
-
-          <div class="dropdown mt-3">
-                        <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Category
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/admin/view-category">Main Category</a>
-                            <a class="dropdown-item" href="/admin/view-subcategory">Sub Category</a>
-            
-                        </div>
-                    </div>
+        </div>
 
         {{!-- <a href="offer-management" class="btn btn-primary ml-2 mt-3">Offers</a> --}}
         <a href="coupon-management" class="btn btn-primary ml-2 mt-3">Coupons</a>
 
 
-        
-    </div> 
 
-    
+    </div>
+
+
 
 
     <div class="table table-responsive mt-5">
 
         <table class="data-table table hover multiple-select-row nowrap" id="myTable">
             <div class="col-lg-4 col-md-4 col-sm-6 my-2">
-             <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()"
-                placeholder="Search for names..">
-                </div>
-              
+                <input type="text" class="form-control search-type" id="myInput" onkeyup="myFunction()"
+                    placeholder="Search for names..">
+            </div>
 
-            <thead >
+
+            <thead>
                 <tr>
                     <th scope="col">No.</th>
                     <th scope="col">Title</th>
@@ -149,41 +147,37 @@
                 {{/each}}
             </tbody>
         </table>
-        
+
     </div>
 
 
 
 </section>
 
- <script>
-                function myFunction() {
-                    // Declare variables
-                    var input, filter, table, tr, td, i, txtValue;
-                    input = document.getElementById("myInput");
-                    filter = input.value.toUpperCase();
-                    table = document.getElementById("myTable");
-                    tr = table.getElementsByTagName("tr");
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
 
-                    // Loop through all table rows, and hide those who don't match the search query
-                    for (i = 0; i < tr.length; i++) {
-                        td = tr[i].getElementsByTagName("td")[1];
-                        if (td) {
-                            txtValue = td.textContent || td.innerText;
-                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                tr[i].style.display = "";
-                            } else {
-                                tr[i].style.display = "none";
-                            }
-                        }
-                    }
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
-
-
-
-                
-            </script> 
+            }
+        }
+    }
 
 
 
 
+</script>

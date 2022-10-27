@@ -1,11 +1,11 @@
 <body>
-   
+
 
 
     <!-- Carousel Start -->
     <div class="container-fluid mb-3 mt-5">
         <div class="row px-xl-5">
-            
+
             <div class="col-lg-8">
                 <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -21,7 +21,8 @@
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Men
                                         Fashion</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Time is the most precious thing that can spend by man.</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Time is the most
+                                        precious thing that can spend by man.</p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
                                         href="/view-allProducts">Shop Now</a>
                                 </div>
@@ -34,7 +35,8 @@
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Women
                                         Fashion</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Wear it like no one can.</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Wear it like no one can.
+                                    </p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
                                         href="/view-allProducts">Shop Now</a>
                                 </div>
@@ -47,7 +49,8 @@
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Kids
                                         Fashion</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">The more you enjoy it.</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">The more you enjoy it.
+                                    </p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
                                         href="/view-allProducts">Shop Now</a>
                                 </div>
@@ -132,17 +135,17 @@
                 </a>
             </div>
             {{/each}}
-           
-          
-          
-        
-        
-          
-        
-         
-            
-          
-           
+
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
     <!-- Categories End -->
@@ -159,20 +162,25 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" style="width: 150px;height: 250px;" src="/product-images/{{this._id}}.jpg" alt="">
+                        <img class="img-fluid w-100" style="width: 150px;height: 250px;"
+                            src="/product-images/{{this._id}}.jpg" alt="">
                         <div class="product-action">
-                            <a onclick="addToCart('{{this._id}}')" class="btn btn-outline-dark btn-square" ><i  class="fa fa-shopping-cart"></i></a>
-                            <a onclick="addToWishlist('{{this._id}}')" class="btn btn-outline-dark btn-square"><i class="far fa-heart"></i></a>
-                           
-                            <a class="btn btn-outline-dark btn-square" href="/product-details/{{this._id}}"><i class="fa fa-search"></i></a>
+                            <a onclick="addToCart('{{this._id}}')" class="btn btn-outline-dark btn-square"><i
+                                    class="fa fa-shopping-cart"></i></a>
+                            <a onclick="addToWishlist('{{this._id}}')" class="btn btn-outline-dark btn-square"><i
+                                    class="far fa-heart"></i></a>
+
+                            <a class="btn btn-outline-dark btn-square" href="/product-details/{{this._id}}"><i
+                                    class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
                         <div class="text-truncate">
-                        <a class="h6 text-decoration-none text-truncate" href="/product-details/{{this._id}}">{{this.product.Name}}</a>
+                            <a class="h6 text-decoration-none text-truncate"
+                                href="/product-details/{{this._id}}">{{this.product.Name}}</a>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                          <!--  <a class="btn btn-primary" href="">Add to Cart</a> -->
+                            <!--  <a class="btn btn-primary" href="">Add to Cart</a> -->
                             <h5>Rs {{this.product.Price}}</h5>
                             <h6 class="text-muted ml-2"><del>Rs {{this.product.oldPrice}}</del></h6>
                         </div>
@@ -188,7 +196,7 @@
                 </div>
             </div>
             {{/each}}
-      
+
         </div>
     </div>
     <!-- Products End -->
@@ -476,7 +484,7 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                           
+
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
@@ -488,7 +496,7 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            
+
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
@@ -537,7 +545,7 @@
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-   
+
 </body>
 
 </html>

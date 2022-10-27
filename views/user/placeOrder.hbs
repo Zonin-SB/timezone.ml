@@ -52,7 +52,7 @@
                     <a href="/profile" class="btn btn-primary">Add Address</a>
                     {{/if}}
                 </div>
-               
+
             </div>
 
 
@@ -148,7 +148,7 @@
             method: 'post',
             data: $('#checkout-form').serialize(),
             success: (response) => {
-               
+
                 if (response.codSuccess) {
                     console.log("COD working")
                     location.href = '/orderSuccess'

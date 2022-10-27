@@ -13,33 +13,33 @@
                     <label for="">Price</label>
                     <input type="text" name="Price" class="form-control" required>
 
-                     <label for="">Old Price</label>
+                    <label for="">Old Price</label>
                     <input type="text" name="oldPrice" class="form-control" required>
 
                     <label for="">Description</label>
-                     <textarea type="text" name="Description" class="form-control mb-3"  rows="3" required></textarea>
-                    
+                    <textarea type="text" name="Description" class="form-control mb-3" rows="3" required></textarea>
+
 
                     <label for="">Stock</label>
                     <input type="text" name="Stock" class="form-control" required>
 
                     <label for="">Image-1</label>
                     <div class=" rowcarousel-item active py-1">
-                        <img src=""  id="viewPhoto1" class="d-block w-50 ">
+                        <img src="" id="viewPhoto1" class="d-block w-50 ">
                     </div>
                     <input type="file" name="Image" class="form-control" onchange="viewPhotoa(event)" required>
 
-                        <label for="">Image-2</label>
-                     <div class=" rowcarousel-item active py-1" >
-                        <img src=""  id="viewPhoto2" class="d-block w-50">
+                    <label for="">Image-2</label>
+                    <div class=" rowcarousel-item active py-1">
+                        <img src="" id="viewPhoto2" class="d-block w-50">
                     </div>
-                     <input type="file" name="Image2" class="form-control" onchange="viewPhotob(event)" required>
+                    <input type="file" name="Image2" class="form-control" onchange="viewPhotob(event)" required>
 
-                      <label for="">Image-3</label>
-                     <div class=" rowcarousel-item active py-1" >
-                        <img src=""  id="viewPhoto3" class="d-block w-50">
+                    <label for="">Image-3</label>
+                    <div class=" rowcarousel-item active py-1">
+                        <img src="" id="viewPhoto3" class="d-block w-50">
                     </div>
-                     <input type="file" name="Image3" class="form-control" onchange="viewPhotoc(event)" required>
+                    <input type="file" name="Image3" class="form-control" onchange="viewPhotoc(event)" required>
 
 
 
@@ -69,19 +69,19 @@
 
 
 <script>
-     function viewPhotoa(event) {
+    function viewPhotoa(event) {
 
         document.getElementById('viewPhoto1').src = URL.createObjectURL(event.target.files[0])
 
     }
 
-     function viewPhotob(event) {
+    function viewPhotob(event) {
 
         document.getElementById('viewPhoto2').src = URL.createObjectURL(event.target.files[0])
 
     }
 
-     function viewPhotoc(event) {
+    function viewPhotoc(event) {
 
         document.getElementById('viewPhoto3').src = URL.createObjectURL(event.target.files[0])
 

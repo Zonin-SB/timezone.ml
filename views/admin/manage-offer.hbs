@@ -2,8 +2,8 @@
     {{!-- <div class="container"> --}}
         <div class="row mt-5">
 
-           
-            
+
+
             <div class="dropdown">
                 <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -15,73 +15,76 @@
 
                 </div>
             </div>
-       
+
 
 
 
         </div>
-            <div class="table-responsive mt-5" style="max-width: 70vw; margin:auto">
-        <table class="table  table-borderless align-middle " id="productTable">
-            <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Products</th>
-                    <th scope="col">Delete</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-                {{#each products}}
-                <tr>
-                    <th scope="row">1</th>
-                    <td scope="row">{{this.Name}}</td>
-                    <td scope="row">{{this.Category}}</td>
-                    <td scope="row">{{this.Subcategory}}</td>
-                    <td scope="row">{{this.Price}}</td>
-                    <td scope="row">{{this.Stock}}</td>
-                    <td scope="row"><img style="width: 50px; height:50px" src="/product-images/{{this._id}}.jpg" alt=""></td>
-                    <td>
+        <div class="table-responsive mt-5" style="max-width: 70vw; margin:auto">
+            <table class="table  table-borderless align-middle " id="productTable">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Products</th>
+                        <th scope="col">Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td scope="row">{{this.Name}}</td>
+                        <td scope="row">{{this.Category}}</td>
+                        <td scope="row">{{this.Subcategory}}</td>
+                        <td scope="row">{{this.Price}}</td>
+                        <td scope="row">{{this.Stock}}</td>
+                        <td scope="row"><img style="width: 50px; height:50px" src="/product-images/{{this._id}}.jpg"
+                                alt=""></td>
+                        <td>
 
 
-                        <!-- Button trigger modal -->
-                        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" data-toggle="modal"
-                            data-target="#exampleModalDelete{{this._id}}">
-                            Delete
-                        </a>
+                            <!-- Button trigger modal -->
+                            <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" data-toggle="modal"
+                                data-target="#exampleModalDelete{{this._id}}">
+                                Delete
+                            </a>
 
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalDelete{{this._id}}" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete {{this.Name}}
-                                    </div>
-                                    <div class="modal-footer-1">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cancel</button>
-                                        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger">Delete</a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalDelete{{this._id}}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{this.Name}}
+                                        </div>
+                                        <div class="modal-footer-1">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <a href="/admin/delete-product/{{this._id}}"
+                                                class="btn btn-danger">Delete</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
 
 
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
-    {{!-- </div> --}}
+        {{!--
+    </div> --}}
 </section>

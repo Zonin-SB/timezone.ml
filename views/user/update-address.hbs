@@ -1,27 +1,32 @@
-<section  class="d-flex justify-content-center " >
+<section class="d-flex justify-content-center ">
   <div class=" container row  d-flex justify-content-center ">
     <div class="ml-5 col-md-6">
       <h2 class="text-center my-5 ">Update Address</h2>
-      <form class="d-flex aling-item-center flex-column" action="/update-address/{{userAddress._id}}" method="post"    enctype="multipart/form-data" >
-    
-        <input type="text" name="Name" class="form-control mb-3" placeholder="Name" required value="{{userAddress.Name}}">
+      <form class="d-flex aling-item-center flex-column" action="/update-address/{{userAddress._id}}" method="post"
+        enctype="multipart/form-data">
 
-        <input type="email" name="Email" class="form-control mb-3" placeholder="Email" required value="{{userAddress.Email}}">
+        <input type="text" name="Name" class="form-control mb-3" placeholder="Name" required
+          value="{{userAddress.Name}}">
 
-        <input type="number" name="Mobile" class="form-control mb-3" placeholder="Phone" required value="{{userAddress.Mobile}}">
+        <input type="email" name="Email" class="form-control mb-3" placeholder="Email" required
+          value="{{userAddress.Email}}">
 
-        <textarea type="text" name="Address" class="form-control mb-3" value="testefhadfi" placeholder="Address" rows="3" >{{userAddress.Address}}</textarea>
+        <input type="number" name="Mobile" class="form-control mb-3" placeholder="Phone" required
+          value="{{userAddress.Mobile}}">
 
-         <input type="text" name="Pincode" class="form-control mb-3" placeholder="Pincode" required value="{{userAddress.Pincode}}">
+        <textarea type="text" name="Address" class="form-control mb-3" value="testefhadfi" placeholder="Address"
+          rows="3">{{userAddress.Address}}</textarea>
 
-       
+        <input type="text" name="Pincode" class="form-control mb-3" placeholder="Pincode" required
+          value="{{userAddress.Pincode}}">
 
 
 
-        <button  style="background-color:#17a2b8; color:#fff;" type="submit" class="btn mt-1" required>Submit</button>
+
+
+        <button style="background-color:#17a2b8; color:#fff;" type="submit" class="btn mt-1" required>Submit</button>
 
       </form>
     </div>
   </div>
 </section>
-

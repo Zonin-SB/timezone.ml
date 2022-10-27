@@ -8,9 +8,9 @@ const collections = require('../config/collections');
 // const { response } = require('../app');
 const objectId = require('mongodb').ObjectId;
 
-const accountSID=process.env.accountSID;
-const serviceID=process.env.serviceID;
-const authToken=process.env.authToken
+const accountSID = process.env.accountSID;
+const serviceID = process.env.serviceID;
+const authToken = process.env.authToken
 
 const client = require("twilio")(accountSID, authToken);
 
@@ -85,10 +85,10 @@ module.exports = {
     sendOtp: (Mobile) => {
         console.log('otp started sending');
         Mobile = "+91" + Mobile;
-        console.log('Mobile');
+        console.log(Mobile);
 
-        client
-            .verify
+
+        client.verify
             .services(serviceID)
             .verifications
             .create({
@@ -628,7 +628,7 @@ module.exports = {
                     Name: userData.Name,
                     Email: userData.Email,
                     Mobile: userData.Mobile,
-                  
+
                 }
             }).then((response) => {
                 resolve(response.insertedId)
@@ -708,9 +708,9 @@ module.exports = {
         })
     },
 
-    getDefaultAddress:(userId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let address=await db.get().collection(collection.ADDRESS_COLLECTION).find({userId:userId,default:true}).toArray()
+    getDefaultAddress: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            let address = await db.get().collection(collection.ADDRESS_COLLECTION).find({ userId: userId, default: true }).toArray()
             resolve(address[0])
         })
     },
@@ -726,23 +726,23 @@ module.exports = {
         })
     },
 
-    search:(data)=>{
-        return new Promise(async(resolve,reject)=>{
-            try{
+    search: (data) => {
+        return new Promise(async (resolve, reject) => {
+            try {
                 let product
-                db.get().collection(collection.PRODUCT_COLLECTION).createIndex({Name:'text',Category:'text',Brand:'text'}).then((response)=>{
-                    new Promise(async(resolve,reject)=>{
-                         product=await db.get().collection(collection.PRODUCT_COLLECTION).find({$text:{$search:data}},{score:{$meta:'textScore'}}).sort({score:{$meta:'textScore'}}).toArray()
+                db.get().collection(collection.PRODUCT_COLLECTION).createIndex({ Name: 'text', Category: 'text', Brand: 'text' }).then((response) => {
+                    new Promise(async (resolve, reject) => {
+                        product = await db.get().collection(collection.PRODUCT_COLLECTION).find({ $text: { $search: data } }, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }).toArray()
                         resolve(product)
-                    }).then((product)=>{
-                        if(product==""){
+                    }).then((product) => {
+                        if (product == "") {
                             reject()
                         }
                         resolve(product)
                     })
                 })
-            }catch{
-                response.status(400).send({success:false})
+            } catch {
+                response.status(400).send({ success: false })
                 reject()
             }
         })

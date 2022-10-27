@@ -114,8 +114,10 @@ router.post('/login', async (req, res) => {
 
 
 router.get('/otp', (req, res) => {
+
   // hard setting for otp verification need to remove
-  req.session.userLogin = true
+
+  // req.session.userLogin = true
 
   res.header(
     "Cache-control",
@@ -175,12 +177,12 @@ router.get('/category-product-view', async (req, res) => {
     wishcount = await userHelpers.getWishlistCount(req.session.user._id)
     req.session.wishcount = wishcount
   }
- 
+
   productHelpers.getCategoryProduct(category).then((products) => {
     res.render('user/view-allProducts', { products, cartCount, wishcount, userLogin: req.session.userLogin, user: req.session.user });
-  }).catch(async()=>{
+  }).catch(async () => {
 
-    res.render('user/view-allProducts', { notFound:true, cartCount, wishcount, userLogin: req.session.userLogin, user: req.session.user });
+    res.render('user/view-allProducts', { notFound: true, cartCount, wishcount, userLogin: req.session.userLogin, user: req.session.user });
   })
 
 
@@ -302,7 +304,7 @@ router.post('/place-order', async (req, res) => {
   if (coupon.length >= 1) {
     totalPrice = parseInt(totalPrice) - parseInt(coupon[0].value)
   }
- 
+
   console.log(totalPrice);
   // get product
   let products = await userHelpers.getCartProductList(req.body.userId)
@@ -492,7 +494,7 @@ router.get('/view-ordered-products/:id', verifyLogin, async (req, res) => {
 
     res.render('user/view-ordered-products', { user: req.session.user, userLogin: req.session.userLogin, cartCount: req.session.cartCount, orderDetails, totalPrice, deliveryDetails, currentStatus, paymentMethod, currentDate, paymentStatus, wishcount: req.session.wishcount })
 
-  }).catch((err)=>{
+  }).catch((err) => {
     res.render('404')
   })
 

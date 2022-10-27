@@ -118,10 +118,10 @@ router.post('/add-product', (req, res) => {
     image2.mv('./public/product-images2/' + id + '.jpg')
 
     let image3 = req.files.Image3
-    image3.mv('./public/product-images3/' + id + '.jpg',(err,done)=>{
-      if(!err){
+    image3.mv('./public/product-images3/' + id + '.jpg', (err, done) => {
+      if (!err) {
         res.redirect('/admin/products')
-      }else{
+      } else {
         console.log(err);
       }
     })
@@ -165,24 +165,24 @@ router.post('/edit-product/:id', (req, res) => {
   let id = req.params.id
   productHelpers.updateProduct(req.params.id, req.body).then(() => {
     res.redirect('/admin/products')
-    try{
+    try {
 
       if (req.files.Image) {
         let image1 = req.files.Image
         image1.mv('./public/product-images/' + id + '.jpg')
       }
-      if(req.files.Image2){
+      if (req.files.Image2) {
         let image2 = req.files.Image2
         image2.mv('./public/product-images2/' + id + '.jpg')
       }
-      if(req.files.Image3){
+      if (req.files.Image3) {
         let image3 = req.files.Image3
         image3.mv('./public/product-images3/' + id + '.jpg')
       }
-    }catch{
+    } catch {
 
     }
-    
+
   })
 })
 // category management
@@ -409,33 +409,33 @@ router.get('/delete-coupon/:id', (req, res) => {
 })
 
 
-router.get('/edit-page',adminVerify,async(req,res)=>{
-  let carousel=await adminHelpers.getCarousel()
+router.get('/edit-page', adminVerify, async (req, res) => {
+  let carousel = await adminHelpers.getCarousel()
 
-  res.render('admin/edit-page',{admin:true,carousel})
+  res.render('admin/edit-page', { admin: true, carousel })
 })
 
-router.get('/add-carousel',(req,res)=>{
+router.get('/add-carousel', (req, res) => {
 
-  res.render('admin/add-carousel',{admin:true})
+  res.render('admin/add-carousel', { admin: true })
 })
 
-router.post('/add-carousel',(req,res)=>{
-  adminHelpers.addCarousel(req.body).then((response)=>{
-    const id=response.toString()
-    if(req.files){
-      let image=req.files.image
-      image.mv('./public/carousel-images/'+id+'.jpg')
+router.post('/add-carousel', (req, res) => {
+  adminHelpers.addCarousel(req.body).then((response) => {
+    const id = response.toString()
+    if (req.files) {
+      let image = req.files.image
+      image.mv('./public/carousel-images/' + id + '.jpg')
     }
     res.redirect('/admin/edit-page')
   })
 })
 
-router.get('/delete-carousel/:id',(req,res)=>{
-const id=req.params.id
-adminHelpers.deleteCarousel(id).then((response)=>{
-res.redirect('/admin/edit-page')
-})
+router.get('/delete-carousel/:id', (req, res) => {
+  const id = req.params.id
+  adminHelpers.deleteCarousel(id).then((response) => {
+    res.redirect('/admin/edit-page')
+  })
 })
 
 
